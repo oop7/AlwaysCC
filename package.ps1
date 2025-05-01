@@ -71,57 +71,16 @@ if (Test-Path $xpiFile) {
     Remove-Item $xpiFile -Force
 }
 
-# Create the ZIP file using .NET classes to control path separators
-Add-Type -AssemblyName System.IO.Compression
-Add-Type -AssemblyName System.IO.Compression.FileSystem
-
+# Use simpler approach with Compress-Archive
 try {
-    # Create empty ZIP file
-    [System.IO.Compression.ZipFile]::CreateFromDirectory($tempDir, $xpiFile)
-    
-    # Actually, let's extract and recreate with manual path conversions
-    $extractDir = "build\extract"
-    if (Test-Path $extractDir) {
-        Remove-Item -Recurse -Force $extractDir
-    }
-    New-Item -ItemType Directory -Path $extractDir | Out-Null
-    
-    # Extract the ZIP we just created
-    [System.IO.Compression.ZipFile]::ExtractToDirectory($xpiFile, $extractDir)
-    
-    # Delete the original ZIP
-    Remove-Item $xpiFile -Force
-    
-    # Now create a new archive manually with forward slashes
-    $zipOutputStream = New-Object System.IO.FileStream($xpiFile, [System.IO.FileMode]::Create)
-    $zipArchive = New-Object System.IO.Compression.ZipArchive($zipOutputStream, [System.IO.Compression.ZipArchiveMode]::Create)
-    
-    # Get all files recursively
-    $files = Get-ChildItem -Path $extractDir -Recurse -File
-    
-    foreach ($file in $files) {
-        # Get relative path with forward slashes
-        $relativePath = $file.FullName.Substring($extractDir.Length + 1).Replace('\', '/')
-        
-        # Add file to archive with forward slashes in the path
-        $entry = $zipArchive.CreateEntry($relativePath)
-        $entryStream = $entry.Open()
-        $fileStream = [System.IO.File]::OpenRead($file.FullName)
-        
-        $fileStream.CopyTo($entryStream)
-        
-        $entryStream.Close()
-        $fileStream.Close()
+    Compress-Archive -Path "$tempDir\*" -DestinationPath $xpiFile -Force
+
+    # Rename .zip to .xpi if Compress-Archive created a .zip file
+    if (-not (Test-Path $xpiFile) -and (Test-Path "$xpiFile.zip")) {
+        Rename-Item -Path "$xpiFile.zip" -NewName (Split-Path $xpiFile -Leaf)
     }
     
-    # Close the archive
-    $zipArchive.Dispose()
-    $zipOutputStream.Close()
-    
-    # Clean up extract directory
-    Remove-Item -Recurse -Force $extractDir
-    
-    Write-Host "Successfully created XPI file with proper path separators."
+    Write-Host "Successfully created XPI file."
 } 
 catch {
     Write-Host "ERROR: An error occurred while creating the XPI file."
