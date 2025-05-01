@@ -1,0 +1,36 @@
+{
+  "manifest_version": 2,
+  "name": "AlwaysCC",
+  "version": "1.0",
+  "description": "Automatically enables subtitles on YouTube videos and selects your preferred caption type",
+  "icons": {
+    "48": "icons/icon-48.png",
+    "96": "icons/icon-96.png"
+  },
+  "permissions": [
+    "*://*.youtube.com/*",
+    "storage"
+  ],
+  "browser_action": {
+    "default_icon": {
+      "48": "icons/icon-48.png",
+      "96": "icons/icon-96.png"
+    },
+    "default_title": "AlwaysCC",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://*.youtube.com/*"],
+      "js": ["content.js"]
+    }
+  ],
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "alwayscc@firefox-extensions.com",
+      "strict_min_version": "57.0"
+    }
+  },
+  "author": "oop7",
+  "homepage_url": "https://github.com/oop7/AlwaysCC"
+} 

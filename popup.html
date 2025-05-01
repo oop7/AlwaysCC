@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AlwaysCC</title>
+  <style>
+    body {
+      width: 300px;
+      font-family: Arial, sans-serif;
+      padding: 10px;
+      background-color: #f9f9f9;
+    }
+    h1 {
+      font-size: 16px;
+      color: #c00;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    select, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .custom-option {
+      margin-top: 10px;
+    }
+    .custom-option label {
+      font-weight: normal;
+    }
+    button {
+      background-color: #c00;
+      color: white;
+      border: none;
+      padding: 8px 15px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background-color: #900;
+    }
+    .status {
+      margin-top: 10px;
+      font-style: italic;
+      color: #080;
+    }
+    .presets {
+      margin-bottom: 15px;
+    }
+    .presets button {
+      margin-right: 5px;
+      margin-bottom: 5px;
+      background-color: #444;
+      font-size: 12px;
+    }
+    .presets button:hover {
+      background-color: #222;
+    }
+    .footer {
+      font-size: 11px;
+      color: #666;
+      margin-top: 15px;
+      text-align: center;
+    }
+    .note {
+      font-size: 12px;
+      color: #666;
+      margin-top: 10px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <h1>AlwaysCC</h1>
+  
+  <div class="form-group">
+    <label for="subtitle-preference">Preferred Subtitle:</label>
+    <select id="subtitle-preference">
+      <option value="English (auto-generated)">English (auto-generated)</option>
+      <option value="English">English</option>
+      <optgroup label="Auto-translate">
+        <option value="auto-translate:Spanish">Auto-translate: Spanish</option>
+        <option value="auto-translate:French">Auto-translate: French</option>
+        <option value="auto-translate:German">Auto-translate: German</option>
+        <option value="auto-translate:Arabic">Auto-translate: Arabic</option>
+        <option value="auto-translate:Chinese">Auto-translate: Chinese</option>
+      </optgroup>
+      <option value="custom">Custom...</option>
+    </select>
+  </div>
+
+  <div class="custom-option" id="custom-option-container" style="display: none;">
+    <label for="custom-subtitle">Enter custom subtitle name:</label>
+    <input type="text" id="custom-subtitle" placeholder="Exactly as shown in YouTube menu">
+  </div>
+
+  <div class="presets">
+    <label>Common options:</label>
+    <div>
+      <button class="preset-btn" data-value="Spanish (auto-generated)">Spanish auto</button>
+      <button class="preset-btn" data-value="French (auto-generated)">French auto</button>
+      <button class="preset-btn" data-value="German (auto-generated)">German auto</button>
+      <button class="preset-btn" data-value="Japanese (auto-generated)">Japanese auto</button>
+    </div>
+    <div style="margin-top: 5px;">
+      <button class="preset-btn" data-value="auto-translate:Russian">Translate to Russian</button>
+      <button class="preset-btn" data-value="auto-translate:Japanese">Translate to Japanese</button>
+      <button class="preset-btn" data-value="auto-translate:Portuguese">Translate to Portuguese</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button id="save-btn">Save Preferences</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="note">
+    <p>Note: The subtitle name must match exactly as it appears in YouTube's menu.</p>
+  </div>
+
+  <div class="footer">
+    <p>Version 1.0 - Initial Firefox release with auto-translate support</p>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html> 
