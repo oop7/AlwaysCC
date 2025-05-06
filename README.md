@@ -7,7 +7,7 @@
 **Never miss a word on YouTube again - automatically enable captions on every video**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
-[![Status: In Review](https://img.shields.io/badge/Status-In%20Review-yellow.svg)](https://github.com/oop7/AlwaysCC)
+[![Firefox Add-on](https://img.shields.io/badge/Firefox-Add--on-FF7139.svg?logo=firefox-browser)](https://addons.mozilla.org/en-US/firefox/addon/alwayscc/)
 
 </div>
 
@@ -26,9 +26,17 @@ AlwaysCC is a Firefox extension that automatically enables closed captions on Yo
 
 ## Installation
 
-> **Note:** This extension is currently pending review for the Firefox Add-ons Store. The following installation methods are available in the meantime.
+### Firefox Add-ons Store (Recommended)
+
+The extension is now available on the official Firefox Add-ons Store:
+
+1. Visit [AlwaysCC on Firefox Add-ons](https://addons.mozilla.org/en-US/firefox/addon/alwayscc/)
+2. Click "Add to Firefox"
+3. Follow the prompts to complete installation
 
 ### Manual Installation
+
+If you prefer to install manually:
 
 1. Download this repository (`git clone https://github.com/oop7/AlwaysCC.git` or download ZIP)
 2. Open Firefox and go to `about:debugging`
@@ -48,10 +56,6 @@ Firefox requires extensions to be signed, but for development you can bypass thi
 6. Install the extension by opening the .xpi file directly
 
 This method only works in Firefox Developer Edition, Firefox Nightly, or Firefox ESR.
-
-### Coming Soon to Firefox Add-ons Store
-
-Once approved, the extension will be available for easy installation directly from the Firefox Add-ons Store. The review process typically takes a few days to complete.
 
 ## Usage
 
